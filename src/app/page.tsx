@@ -1,97 +1,100 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import styles from "./page.module.css";
 import { appRelease } from "@/config/app-release";
 import {
   AndroidIcon,
+  BadgeCheckIcon,
   DownloadIcon,
   FilterIcon,
+  MapPinIcon,
   PhotosIcon,
   PlusIcon,
   SearchIcon,
   ShieldCheckIcon,
+  TagIcon,
   UsersIcon,
-  WorldIcon,
+  WhatsappIcon,
 } from "@/components/icons";
 
 const versionItems = [
   {
     label: "الإصدار",
-    value: appRelease.versionName,
+    value: <MetricValue>{appRelease.versionName}</MetricValue>,
     icon: <PlusIcon width={22} height={22} />,
   },
   {
     label: "رقم البناء",
-    value: String(appRelease.versionCode),
-    icon: <AndroidIcon width={22} height={22} />,
+    value: <MetricValue>{appRelease.versionCode}</MetricValue>,
+    icon: <BadgeCheckIcon width={22} height={22} />,
   },
   {
     label: "حجم التطبيق",
-    value: appRelease.apkSize,
+    value: <MetricValue>{appRelease.apkSize}</MetricValue>,
     icon: <DownloadIcon width={22} height={22} />,
   },
   {
     label: "النظام",
-    value: "Android",
+    value: <MetricValue>Android</MetricValue>,
     icon: <AndroidIcon width={22} height={22} />,
   },
   {
     label: "الحد الأدنى",
-    value: appRelease.minimumAndroidLabel,
-    icon: <WorldIcon width={22} height={22} />,
+    value: (
+      <span>
+        <MetricValue>Android 7.0</MetricValue> أو أحدث
+      </span>
+    ),
+    icon: <AndroidIcon width={22} height={22} />,
   },
 ];
 
 const features = [
   {
     title: "نشر الإعلانات بسهولة",
-    text: "أنشئ إعلانًا واضحًا في خطوات بسيطة مع واجهة عربية مباشرة وسريعة.",
+    text: "أضف إعلانك بخطوات بسيطة وواضحة.",
     icon: <PlusIcon width={26} height={26} />,
   },
   {
-    title: "تصنيفات وفلترة متقدمة",
-    text: "اعثر على الإعلان المناسب بسرعة عبر التصنيف والمنطقة ونوع العرض.",
+    title: "تصنيفات وفلاتر متقدمة",
+    text: "اعثر على المطلوب بسرعة من الفئات.",
     icon: <FilterIcon width={26} height={26} />,
   },
   {
     title: "رفع عدة صور للإعلان",
-    text: "اعرض السلعة بوضوح عبر صور متعددة توضح الحالة والتفاصيل المهمة.",
+    text: "اعرض منتجك بشكل أوضح وأكثر ثقة.",
     icon: <PhotosIcon width={26} height={26} />,
   },
   {
-    title: "حسابات شخصية للمستخدمين",
-    text: "تابع إعلاناتك وتفضيلاتك ونشاطك من حساب شخصي مرتب وسهل الاستخدام.",
-    icon: <UsersIcon width={26} height={26} />,
+    title: "البحث حسب التصنيف والمنطقة",
+    text: "نتائج أدق وسرعة في الوصول للإعلان.",
+    icon: <SearchIcon width={26} height={26} />,
   },
   {
     title: "واجهة عربية تدعم RTL",
-    text: "تجربة قراءة واتجاه كامل من اليمين إلى اليسار مع خطوط عربية واضحة.",
-    icon: <WorldIcon width={26} height={26} />,
+    text: "قراءة مريحة واتجاه منطقي للمحتوى.",
+    icon: <MapPinIcon width={26} height={26} />,
   },
   {
-    title: "البحث حسب التصنيف والمنطقة",
-    text: "ابحث بسرعة عن السيارات والعقارات والجوالات وغيرها من الأقسام.",
-    icon: <SearchIcon width={26} height={26} />,
+    title: "حسابات شخصية للمستخدمين",
+    text: "ملف واضح، وإدارة أسهل للإعلانات.",
+    icon: <UsersIcon width={26} height={26} />,
   },
 ];
 
 const steps = [
-  {
-    title: "اضغط تحميل التطبيق",
-    text: "استخدم زر التحميل الرئيسي في أعلى الصفحة أو داخل قسم البداية.",
-  },
-  {
-    title: "افتح ملف APK",
-    text: "بعد اكتمال التنزيل افتح الملف من التنزيلات أو من إشعار النظام.",
-  },
-  {
-    title: "اسمح بالتثبيت",
-    text: "إذا طلب Android ذلك، فعّل التثبيت من هذا المصدر بشكل مؤقت.",
-  },
-  {
-    title: "ثبّت وافتح التطبيق",
-    text: "أكمل التثبيت ثم افتح التطبيق وابدأ التصفح أو النشر مباشرة.",
-  },
+  "اضغط تحميل التطبيق",
+  "افتح ملف APK",
+  "اسمح بالتثبيت",
+  "ثبّت وافتح التطبيق",
+];
+
+const safetyPoints = [
+  "الملف موقع ومتاح من هذا الموقع الرسمي فقط.",
+  "ننصح بتحميل التطبيق من هذا الموقع فقط.",
+  "لا تحوّل أي مبلغ قبل المعاينة والتأكد من السلعة والبائع.",
+  "حراج يمني منصة وسيطة ولا يضمن عمليات الدفع أو التسليم.",
 ];
 
 function SectionHeading({
@@ -104,120 +107,185 @@ function SectionHeading({
   return (
     <div className={styles.sectionHeading}>
       <h2>{title}</h2>
-      <div className={styles.underline} />
       <p>{description}</p>
     </div>
   );
 }
 
-function AppDownloadButton({ className }: { className: string }) {
+function AppDownloadButton({
+  className,
+  children,
+}: {
+  className: string;
+  children: ReactNode;
+}) {
   return (
-    <a className={className} href={appRelease.apkDownloadUrl}>
-      <AndroidIcon width={22} height={22} />
-      <span>تحميل للأندرويد</span>
+    <a className={className} href={appRelease.apkDownloadPath} download>
+      <DownloadIcon width={20} height={20} />
+      <span>{children}</span>
     </a>
+  );
+}
+
+function MetricValue({ children }: { children: ReactNode }) {
+  return (
+    <span className={styles.ltrValue} dir="ltr">
+      {children}
+    </span>
   );
 }
 
 export default function Home() {
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
-        <div className={`${styles.shell} ${styles.headerInner}`}>
-          <div className={styles.brand}>
-            <div className={styles.brandMark}>
-              <Image
-                src="/brand/logo.png"
-                alt={`${appRelease.appName} logo`}
-                width={160}
-                height={160}
-                priority
-              />
-            </div>
-            <div className={styles.brandText}>
-              <div className={styles.brandName}>{appRelease.appName}</div>
-              <div className={styles.brandSub}>منصة إعلانات مبوبة موثوقة في اليمن</div>
-            </div>
-          </div>
+      <div className={styles.backdrop} aria-hidden="true">
+        <span className={styles.backdropBlobA} />
+        <span className={styles.backdropBlobB} />
+        <span className={styles.backdropBlobC} />
+      </div>
 
-          <a className={styles.topCta} href={appRelease.apkDownloadUrl}>
-            <DownloadIcon width={20} height={20} />
-            <span>تحميل التطبيق</span>
-          </a>
+      <header className={styles.header}>
+        <div className={styles.shell}>
+          <div className={styles.headerInner}>
+            <div className={styles.brand}>
+              <div className={styles.brandMark}>
+                <Image
+                  src="/brand/icon-maskable-512.png"
+                  alt="شعار حراج يمني"
+                  fill
+                  priority
+                  sizes="56px"
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <div className={styles.brandText}>
+                <div className={styles.brandName}>حراج يمني</div>
+                <div className={styles.brandSub}>منصة إعلانات يمنية موثوقة</div>
+              </div>
+            </div>
+
+            <AppDownloadButton className={styles.headerCta}>
+              تحميل التطبيق
+            </AppDownloadButton>
+          </div>
         </div>
       </header>
 
-      <section className={styles.hero}>
-        <div className={`${styles.shell} ${styles.heroPanel}`}>
-          <div className={`${styles.heroCopy} motion-rise`}>
-            <span className={styles.badge}>نسخة تجريبية</span>
-            <h1 className={styles.heroTitle}>
-              <span className={styles.heroTitleAccent}>بيع واشترِ</span> في اليمن بسهولة
-            </h1>
-            <p className={styles.heroDescription}>
-              حراج يمني منصة إعلانات مبوبة تساعدك على عرض وشراء السيارات والعقارات والجوالات
-              وغيرها بسهولة.
-            </p>
-            <div className={styles.heroActions}>
-              <AppDownloadButton className={styles.primaryButton} />
-              <Link className={styles.secondaryButton} href={appRelease.installPath}>
-                تعليمات التثبيت
-              </Link>
-            </div>
-            <div className={styles.heroNote}>
-              <ShieldCheckIcon width={20} height={20} />
-              <span>الملف موقع رقميًا ويجب تحميله من الموقع الرسمي فقط.</span>
-            </div>
-          </div>
+      <section className={styles.heroSection}>
+        <div className={styles.shell}>
+          <div className={styles.heroCard}>
+            <div className={styles.heroCopy}>
+              <span className={styles.badge}>نسخة تجريبية</span>
+              <h1 className={styles.heroTitle}>
+                بيع و<span className={styles.heroAccent}>اشترِ</span> في اليمن بسهولة
+              </h1>
+              <p className={styles.heroDescription}>
+                حراج يمني منصة إعلانات مبوبة تساعدك على عرض وشراء السيارات والعقارات والجوالات
+                وغيرها بسهولة.
+              </p>
 
-          <div className={`${styles.phoneStage} motion-rise motion-delay-1`} aria-hidden="true">
-            <div className={styles.halo} />
-            <div className={styles.phone}>
-              <div className={styles.phoneScreen}>
-                <div className={styles.phoneTopBar}>
-                  <span>9:41</span>
-                  <span>{appRelease.appName}</span>
+              <div className={styles.heroActions}>
+                <AppDownloadButton className={styles.primaryButton}>
+                  تحميل للأندرويد
+                </AppDownloadButton>
+                <Link className={styles.secondaryButton} href={appRelease.installPath}>
+                  تعليمات التثبيت
+                </Link>
+              </div>
+
+              <p className={styles.heroNote}>
+                ملف APK رسمي من حراج يمني — النسخة غير منشورة حاليًا على Google Play
+              </p>
+
+              <div className={styles.trustRow} aria-label="نقاط الثقة">
+                <div className={styles.trustItem}>
+                  <BadgeCheckIcon width={18} height={18} />
+                  <span>خفيف وسريع</span>
                 </div>
-                <div className={styles.phoneSearch}>
-                  <SearchIcon width={18} height={18} />
-                  <span>ابحث عن أي شيء...</span>
+                <div className={styles.trustItem}>
+                  <BadgeCheckIcon width={18} height={18} />
+                  <span>واجهة عربية</span>
                 </div>
-                <div className={styles.phoneChips}>
-                  {["سيارات", "عقارات", "جوالات"].map((item) => (
-                    <div key={item} className={styles.phoneChip}>
-                      <span style={{ fontSize: "1rem" }}>⬤</span>
-                      <span className={styles.phoneChipLabel}>{item}</span>
-                    </div>
-                  ))}
+                <div className={styles.trustItem}>
+                  <WhatsappIcon width={18} height={18} />
+                  <span>تواصل واتساب</span>
                 </div>
-                <div className={styles.phoneFeed}>
-                  <div className={styles.feedSection}>
-                    <div className={styles.feedHeading}>
-                      <span>إعلانات مميزة</span>
-                      <span style={{ color: "#ef4444", fontSize: "0.95rem" }}>عرض الكل</span>
-                    </div>
-                    <div className={styles.cardRow}>
-                      <div className={styles.miniCard}>
-                        <div className={styles.miniCardImage}>
-                          <Image
-                            src="/brand/splash.png"
-                            alt="Haraj Yamani splash"
-                            width={400}
-                            height={400}
-                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className={styles.miniCardBody}>
-                          <div className={styles.miniCardTitle}>حسابات شخصية</div>
-                          <div className={styles.miniCardMeta}>واجهة عربية واضحة</div>
-                        </div>
+              </div>
+            </div>
+
+            <div className={styles.phoneStage} aria-hidden="true">
+              <div className={styles.phoneGlow} />
+              <div className={styles.phoneFrame}>
+                <div className={styles.phoneNotch} />
+                <div className={styles.phoneScreen}>
+                  <div className={styles.phoneScreenBg} />
+                  <div className={styles.phoneTopBar}>
+                    <span>9:41</span>
+                    <span>{appRelease.appName}</span>
+                  </div>
+                  <div className={styles.phoneContent}>
+                    <div className={styles.phoneHeroStrip}>
+                      <div className={styles.phoneHeroLogo}>
+                        <Image
+                          src="/brand/icon-maskable-512.png"
+                          alt=""
+                          fill
+                          sizes="112px"
+                          style={{ objectFit: "contain" }}
+                        />
                       </div>
-                      <div className={styles.miniCard}>
-                        <div className={styles.miniCardImage} />
-                        <div className={styles.miniCardBody}>
-                          <div className={styles.miniCardTitle}>نشر سريع</div>
-                          <div className={styles.miniCardMeta}>إرفاق صور متعددة</div>
+                      <div>
+                        <div className={styles.phoneHeroTitle}>حراج يمني</div>
+                        <div className={styles.phoneHeroSub}>بيع وشراء بسهولة</div>
+                      </div>
+                    </div>
+
+                    <div className={styles.phoneSearch}>
+                      <SearchIcon width={18} height={18} />
+                      <span>ابحث عن إعلان أو قسم</span>
+                    </div>
+
+                    <div className={styles.phoneChips}>
+                      {["سيارات", "عقارات", "جوالات"].map((item) => (
+                        <div key={item} className={styles.phoneChip}>
+                          <TagIcon width={16} height={16} />
+                          <span>{item}</span>
                         </div>
+                      ))}
+                    </div>
+
+                    <div className={styles.phoneListing}>
+                      <div className={styles.phoneListingHeader}>
+                        <span>إعلانات مميزة</span>
+                        <span>عرض الكل</span>
+                      </div>
+                      <div className={styles.phoneCards}>
+                        <article className={styles.phoneCard}>
+                          <div className={styles.phoneCardImage}>
+                            <Image
+                              src="/brand/splash.png"
+                              alt="لقطة من تطبيق حراج يمني"
+                              fill
+                              sizes="160px"
+                              style={{ objectFit: "cover" }}
+                            />
+                          </div>
+                          <div className={styles.phoneCardBody}>
+                            <div className={styles.phoneCardTitle}>واجهة عربية واضحة</div>
+                            <div className={styles.phoneCardText}>تجربة مرتبة وسريعة</div>
+                          </div>
+                        </article>
+                        <article className={styles.phoneCard}>
+                          <div className={styles.phoneCardImageAlt}>
+                            <div className={styles.phoneCardIcon}>
+                              <PhotosIcon width={24} height={24} />
+                            </div>
+                          </div>
+                          <div className={styles.phoneCardBody}>
+                            <div className={styles.phoneCardTitle}>رفع عدة صور</div>
+                            <div className={styles.phoneCardText}>تفاصيل أوضح للإعلان</div>
+                          </div>
+                        </article>
                       </div>
                     </div>
                   </div>
@@ -232,15 +300,16 @@ export default function Home() {
         <div className={styles.shell}>
           <SectionHeading
             title="معلومات الإصدار"
-            description="جميع أرقام النسخة والتحميل معروضة هنا من ملف إعدادات واحد حتى يسهل تحديثها لاحقًا."
+            description="تفاصيل الإصدار والحجم والنظام موضوعة هنا بشكل واضح ومختصر."
           />
+
           <div className={styles.versionGrid}>
             {versionItems.map((item) => (
-              <div key={item.label} className={`${styles.infoCard} motion-rise`}>
+              <article key={item.label} className={styles.infoCard}>
                 <div className={styles.infoIcon}>{item.icon}</div>
                 <div className={styles.infoLabel}>{item.label}</div>
                 <div className={styles.infoValue}>{item.value}</div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -250,15 +319,12 @@ export default function Home() {
         <div className={styles.shell}>
           <SectionHeading
             title="مميزات التطبيق"
-            description="واجهة خفيفة وسريعة تركّز على ما يحتاجه المستخدم فعلاً في الإعلانات المبوبة."
+            description="ستة كروت فقط تلخص القيمة الأساسية بدون ازدحام بصري."
           />
+
           <div className={styles.featureGrid}>
-            {features.map((feature, index) => (
-              <article
-                key={feature.title}
-                className={`${styles.featureCard} motion-rise`}
-                style={{ animationDelay: `${index * 60}ms` }}
-              >
+            {features.map((feature) => (
+              <article key={feature.title} className={styles.featureCard}>
                 <div className={styles.featureIcon}>{feature.icon}</div>
                 <h3 className={styles.featureTitle}>{feature.title}</h3>
                 <p className={styles.featureText}>{feature.text}</p>
@@ -272,19 +338,26 @@ export default function Home() {
         <div className={styles.shell}>
           <SectionHeading
             title="خطوات تثبيت التطبيق"
-            description="ابدأ التحميل ثم ثبّت ملف APK يدويًا على Android عبر الخطوات التالية."
+            description="الخطوات مكتوبة بلغة بسيطة لمستخدم غير تقني."
           />
-          <div className={styles.stepsLayout}>
-            <div className={styles.steps}>
+
+          <div className={styles.installLayout}>
+            <div className={styles.stepsTimeline}>
               {steps.map((step, index) => (
-                <article key={step.title} className={`${styles.stepCard} motion-rise`}>
+                <article key={step} className={styles.stepCard}>
                   <div className={styles.stepNumber}>{index + 1}</div>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepText}>{step.text}</p>
+                  <h3 className={styles.stepTitle}>{step}</h3>
+                  <p className={styles.stepText}>
+                    {index === 0 && "استخدم زر التحميل في أعلى الصفحة أو في قسم البداية."}
+                    {index === 1 && "بعد انتهاء التنزيل ستجد الملف في التنزيلات أو عبر الإشعار."}
+                    {index === 2 && "إن طلب Android الإذن ففعله مؤقتًا لإتمام التثبيت."}
+                    {index === 3 && "بعد التثبيت افتح التطبيق وابدأ التصفح مباشرة."}
+                  </p>
                 </article>
               ))}
             </div>
-            <div className={styles.installWarning}>
+
+            <div className={styles.warningBox}>
               هذه نسخة تجريبية غير منشورة حاليًا على Google Play.
             </div>
           </div>
@@ -293,40 +366,36 @@ export default function Home() {
 
       <section className={styles.section}>
         <div className={styles.shell}>
-          <SectionHeading
-            title="الأمان والموثوقية"
-            description="الملف موقع رقميًا، والتحديثات ستُنشر لاحقًا من هذا الموقع الرسمي فقط."
-          />
-          <div className={styles.securityGrid}>
-            <div className={styles.securityVisual}>
-              <div className={styles.shieldCircle}>
-                <div className={styles.shieldBadge}>
-                  <Image
-                    src="/brand/logo.png"
-                    alt={`${appRelease.appName} logo`}
-                    width={140}
-                    height={140}
-                    style={{ width: "86px", height: "86px", objectFit: "contain" }}
-                  />
-                </div>
+          <div className={styles.safetyCard}>
+            <div className={styles.safetyCopy}>
+              <SectionHeading
+                title="الأمان والموثوقية"
+                description="حمّل الملف من المصدر الرسمي فقط واتبع احتياطات الشراء المعتادة."
+              />
+
+              <div className={styles.safetyList}>
+                {safetyPoints.map((point) => (
+                  <div key={point} className={styles.safetyItem}>
+                    <ShieldCheckIcon width={20} height={20} />
+                    <p>{point}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className={styles.securityList}>
-              <div className={styles.securityItem}>
-                <ShieldCheckIcon width={22} height={22} />
-                <p>الملف موقع رقميًا لضمان سلامته قبل التثبيت.</p>
-              </div>
-              <div className={styles.securityItem}>
-                <ShieldCheckIcon width={22} height={22} />
-                <p>نوصي بتحميل التطبيق من هذا الموقع الرسمي فقط.</p>
-              </div>
-              <div className={styles.securityItem}>
-                <ShieldCheckIcon width={22} height={22} />
-                <p>تحديثات التطبيق ستُنشر لاحقًا عبر هذا الموقع بشكل رسمي.</p>
-              </div>
-              <div className={styles.securityItem}>
-                <ShieldCheckIcon width={22} height={22} />
-                <p>نحافظ على خصوصيتك وبياناتك بحسب صفحة السياسة المختصرة.</p>
+
+            <div className={styles.safetyVisual} aria-hidden="true">
+              <div className={styles.safetyGlow} />
+              <div className={styles.safetyLogoWrap}>
+                <div className={styles.safetyLogoInner}>
+                  <Image
+                    src="/brand/icon-maskable-512.png"
+                    alt=""
+                    fill
+                    priority
+                    sizes="160px"
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -334,33 +403,43 @@ export default function Home() {
       </section>
 
       <footer className={styles.footer}>
-        <div className={`${styles.shell} ${styles.footerInner}`}>
-          <div className={styles.footerTop}>
-            <div className={styles.footerBrand}>
-              <div className={styles.brandMark}>
-                <Image src="/brand/logo.png" alt={appRelease.appName} width={160} height={160} />
+        <div className={styles.shell}>
+          <div className={styles.footerInner}>
+            <div className={styles.footerBrandRow}>
+              <div className={styles.footerBrand}>
+                <div className={styles.brandMark}>
+                  <Image
+                    src="/brand/icon-maskable-512.png"
+                    alt="شعار حراج يمني"
+                    fill
+                    sizes="56px"
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+                <div>
+                  <div className={styles.footerBrandName}>حراج يمني</div>
+                  <div className={styles.footerBrandText}>جميع الحقوق محفوظة</div>
+                </div>
               </div>
-              <div>
-                <p className={styles.footerBrandName}>{appRelease.appName}</p>
-                <p className={styles.footerBrandText}>جميع الحقوق محفوظة.</p>
+
+              <div className={styles.footerVersion}>
+                <div>
+                  الإصدار <MetricValue>{appRelease.versionName}</MetricValue>
+                </div>
+                <div>
+                  البناء <MetricValue>{appRelease.versionCode}</MetricValue>
+                </div>
+                <div>
+                  <MetricValue>Android 7.0</MetricValue> أو أحدث
+                </div>
               </div>
             </div>
 
             <nav className={styles.footerLinks} aria-label="روابط الموقع">
               <Link href={appRelease.privacyPolicyPath}>سياسة الخصوصية</Link>
               <Link href={appRelease.installPath}>تعليمات التثبيت</Link>
-              <a href={`mailto:${appRelease.contactEmail}`}>التواصل: {appRelease.contactEmail}</a>
+              <a href={`mailto:${appRelease.contactEmail}`}>تواصل معنا</a>
             </nav>
-
-            <div className={styles.footerMeta}>
-              <div>الإصدار: {appRelease.versionName}</div>
-              <div>رقم البناء: {appRelease.versionCode}</div>
-              <div>النظام: Android</div>
-            </div>
-          </div>
-
-          <div className={styles.footerBottom}>
-            <p>© {appRelease.appName}. جميع الحقوق محفوظة.</p>
           </div>
         </div>
       </footer>

@@ -51,7 +51,7 @@ export default function InstallPage() {
           </div>
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}>
-            <a className={styles.primaryButton} href={appRelease.apkDownloadUrl}>
+            <a className={styles.primaryButton} href={appRelease.apkDownloadPath} download>
               <DownloadIcon width={22} height={22} />
               <span>تحميل APK</span>
             </a>

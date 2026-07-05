@@ -144,3 +144,68 @@ export function PlusIcon(props: IconProps) {
     </BaseIcon>
   );
 }
+
+export function BadgeCheckIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path
+        d="m12 3 7 3v5c0 4.7-2.8 8.2-7 10-4.2-1.8-7-5.3-7-10V6l7-3Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m9.4 12.1 1.9 1.9 3.4-4.1"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </BaseIcon>
+  );
+}
+
+export function MapPinIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path
+        d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10" r="2.2" fill="currentColor" />
+    </BaseIcon>
+  );
+}
+
+export function TagIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path
+        d="M5.5 12.8 12.8 5.5H19v6.2l-7.3 7.3a1.8 1.8 0 0 1-2.5 0l-3.7-3.7a1.8 1.8 0 0 1 0-2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="16.3" cy="7.7" r="1.1" fill="currentColor" />
+    </BaseIcon>
+  );
+}
+
+export function WhatsappIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path
+        d="M20 11.9a7.9 7.9 0 0 1-11.9 6.8L4 19l1.3-4.1A7.9 7.9 0 1 1 20 11.9Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.6 8.9c.2-.5.5-.7.9-.7h.6c.2 0 .4.1.5.3l.9 1.6c.1.2.1.4 0 .5l-.6.7c-.1.1-.1.3 0 .4.5.9 1.2 1.7 2.1 2.2.1.1.3.1.4 0l.8-.6c.2-.1.4-.1.5 0l1.6.8c.2.1.3.3.3.5v.7c0 .4-.2.7-.6.9-.4.2-1 .2-1.9-.1-2.4-.8-4.5-2.8-5.5-5.2-.4-.9-.5-1.5-.1-1.9Z"
+        fill="currentColor"
+      />
+    </BaseIcon>
+  );
+}

@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   applicationName: appRelease.appName,
   authors: [{ name: appRelease.appName }],
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: "/brand/icon-maskable-192.png",
+    apple: "/brand/icon-maskable-192.png",
   },
   openGraph: {
     title: `${appRelease.appName} | الموقع الرسمي للتحميل`,
