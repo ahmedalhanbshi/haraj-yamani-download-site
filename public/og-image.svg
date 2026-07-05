@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="48" fill="#F5F5F7"/>
+  <circle cx="980" cy="130" r="200" fill="#FFE4E7"/>
+  <circle cx="250" cy="520" r="260" fill="#FFE8DB"/>
+  <rect x="66" y="66" width="1068" height="498" rx="34" fill="white" stroke="rgba(17,24,39,0.08)"/>
+  <rect x="86" y="86" width="1028" height="458" rx="28" fill="url(#paint0_linear)"/>
+  <rect x="86" y="86" width="1028" height="458" rx="28" fill="url(#paint1_radial)"/>
+  <rect x="110" y="114" width="88" height="88" rx="24" fill="#FF6A00"/>
+  <path d="M126 150C126 136.745 136.745 126 150 126H150C163.255 126 174 136.745 174 150V150C174 163.255 163.255 174 150 174H150C136.745 174 126 163.255 126 150Z" fill="white"/>
+  <text x="238" y="155" fill="#111827" font-size="46" font-weight="800" font-family="Arial, sans-serif">حراج يمني</text>
+  <text x="238" y="198" fill="#6B7280" font-size="24" font-family="Arial, sans-serif">الموقع الرسمي لتحميل النسخة التجريبية</text>
+  <rect x="110" y="260" width="448" height="216" rx="28" fill="#111827"/>
+  <rect x="124" y="274" width="420" height="188" rx="22" fill="url(#paint2_linear)"/>
+  <text x="712" y="270" fill="#E51F2A" font-size="24" font-weight="700" font-family="Arial, sans-serif">نسخة تجريبية</text>
+  <text x="712" y="340" fill="#111827" font-size="64" font-weight="800" font-family="Arial, sans-serif">بيع واشترِ</text>
+  <text x="712" y="402" fill="#111827" font-size="64" font-weight="800" font-family="Arial, sans-serif">في اليمن بسهولة</text>
+  <rect x="712" y="448" width="300" height="70" rx="24" fill="#E51F2A"/>
+  <text x="782" y="493" fill="white" font-size="28" font-weight="700" font-family="Arial, sans-serif">تحميل للأندرويد</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="86" y1="86" x2="1114" y2="544" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FAFAFB"/>
+    </linearGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(860 160) rotate(145) scale(370 260)">
+      <stop stop-color="#FFE7E9" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#FFE7E9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="paint2_linear" x1="124" y1="274" x2="544" y2="462" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A18"/>
+      <stop offset="1" stop-color="#E51F2A"/>
+    </linearGradient>
+  </defs>
+</svg>
