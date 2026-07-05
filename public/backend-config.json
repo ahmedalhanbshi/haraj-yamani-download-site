@@ -1,8 +1,8 @@
 ﻿{
-    "updated_at":  "2026-07-05T17:16:07.2404922Z",
-    "message":  "Server stopped. Try again later.",
-    "api_base_url":  "https://stanford-impose-bishop-leaving.trycloudflare.com/api/v1",
+    "updated_at":  "2026-07-05T17:16:19.3037988Z",
+    "message":  "Server is available.",
+    "api_base_url":  "https://api.trycloudflare.com/api/v1",
     "minimum_app_version_code":  1,
-    "server_base_url":  "https://stanford-impose-bishop-leaving.trycloudflare.com",
-    "enabled":  false
+    "server_base_url":  "https://api.trycloudflare.com",
+    "enabled":  true
 }
