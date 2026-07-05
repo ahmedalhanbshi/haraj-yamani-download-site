@@ -6,7 +6,8 @@ export const appRelease = {
   apkSize: "62.6 MB",
   minimumAndroid: 24,
   minimumAndroidLabel: "Android 7.0 أو أحدث",
-  apkDownloadUrl: "https://example.com/haraj-yamani-demo.apk",
+  apkDownloadUrl:
+    "https://github.com/ahmedalhanbshi/haraj-yamani-download-site/releases/download/v1.0.0-demo.1/haraj-yamani-demo.apk",
   releaseDate: "2026-07-04",
   releaseNotes: ["النسخة التجريبية الأولى من تطبيق حراج يمني"],
   contactEmail: "info@harajyamani.com",
